@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.5.16.js"></script>
+  <script src="./lib/axios-v0.18.0.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="getInfo">Get请求</button>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        // 发起get请求获取数据
+        getInfo() {
+          // 注意：这种方式，不太推荐，今后不要用
+          axios.get('http://www.escook.cn:3000/api/getlunbo').then(res => {
+            console.log(res)
+          })
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

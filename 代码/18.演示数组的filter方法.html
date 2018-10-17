@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    // 数组的 filter 方法，用于过滤一个数组，并根据指定的过滤条件，返回一个 符合 条件的 新数组，而且，注意：filter 方法，不会修改原数组；
+    const newArr = arr.filter(item => {
+      // 在 指定的 方法中，如果 return 了 true ,就表示当前循环的这一项，符合我们的条件，就会把 当前循环的这一项，添加到新数组中；
+      // 如果 return false ,就不会把 当前循环的这一项，添加到新数组中；
+      return item % 2 === 0
+    })
+
+    console.log(newArr)
+
+  </script>
+</body>
+
+</html>

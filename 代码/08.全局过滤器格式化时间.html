@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.5.16.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 中间的 | 叫做 管道符，表示 调用过滤器去格式化 管道符 前面的数据 -->
+    <h3>{{dt | dtFormat1 | addStr('=====', '------')}}</h3>
+  </div>
+
+
+  <div id="app2">
+    <h3>{{dt | dtFormat1}}</h3>
+  </div>
+
+
+  <script>
+    // 定义全局过滤器 的标准语法
+    // Vue.filter('过滤器的名字', function (originVal) { /*过滤器的处理函数， 最后一定要 return 一个处理结果*/ })
+
+    // 过滤器的处理函数中，第一个形参的值，永远都是 管道符 前面的值
+    // 注意：过滤器，只是对原来的数据做了一层包装，并没有修改 原来的值
+    Vue.filter('dtFormat1', function (originVal) {
+      const date = new Date(originVal) // 根据给定的时间字符串，new 一个 指定的日期对象
+      const y = date.getFullYear()
+      const m = date.getMonth() + 1
+      const d = date.getDate()
+
+      // 每个过滤器中，都必须有 return 返回值，否则，就是一个无效的过滤器
+      return `${y}-${m}-${d}`
+    })
+
+    // 注意：在调用过滤器的时候，可以传递参数，传递的参数，需要从第二个形参的位置，开始依次获取
+    Vue.filter('addStr', function (originVal, str, arg2) {
+      return originVal + str + arg2
+    })
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        dt: "2018-01-25T02:10:02.945Z"
+      },
+      methods: {}
+    });
+
+
+    var vm2 = new Vue({
+      el: '#app2',
+      data: {
+        dt: new Date() // 当前时间
+      },
+      filters: {
+        // 这是一个 私有的过滤器
+        // 如果全局的过滤器 和 私有的过滤器，名字 一样了，则 按照就近原则进行调用；
+        dtFormat1(originVal) {
+          const date = new Date(originVal) // 根据给定的时间字符串，new 一个 指定的日期对象
+          const y = date.getFullYear()
+          const m = date.getMonth() + 1
+          const d = date.getDate()
+
+          // 每个过滤器中，都必须有 return 返回值，否则，就是一个无效的过滤器
+          return `${y}-${m}-${d},,,,,,`
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

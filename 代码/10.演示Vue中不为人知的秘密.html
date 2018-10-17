@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.5.16.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{msg}}
+    <hr> {{obj.gender}}
+    <button @click="bindGender">动态绑定 gender 属性</button>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({ // 配置对象
+      el: '#app',
+      data: {
+        msg: '瓦塔西',
+        obj: {
+          name: '',
+          age: ''
+        }
+      },
+      methods: {
+        bindGender() {
+          // 动态绑定属性
+          this.$set(this.obj, 'gender', '男')
+        }
+      },
+      beforeMount() {
+        console.log(this.$el)
+      }
+    });
+
+    // function Vue(obj) {
+    //   this.$el = document.getElementById(obj.el)
+    //   this.msg = obj.data.msg
+    //   this.$set = function () { }
+    // }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.5.16.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button>这是一个单纯的按钮</button>
+    <h6>{{msg}}</h6>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '哈哈哈~~~~'
+      },
+      methods: {},
+      // 注意：如果 在 new Vue 实例的使用，既提供了 el 属性，又提供了 template 属性，则 会把 template 对应的模板，替换掉 el 所指定的区域
+      template: '<h1>{{msg}}</h1>'
+    });
+  </script>
+</body>
+
+</html>

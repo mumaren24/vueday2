@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.5.16.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="msg='no'">修改 msg 的值 为 no</button>
+    <h1 id="txtMsg">{{msg}}</h1>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'ok'
+      },
+      methods: {
+        test() {
+          console.log('有人调用了  test  方法')
+        }
+      },
+      // 创建阶段的第一个生命周期函数
+      beforeCreate() {
+        // console.log(this.msg)
+        // this.test()
+      },
+      created() {
+        // 我们经常会在 created 中，调用 methods 中的方法，发起 Ajax 请求获取数据，并把 获取到的数据挂载到 data 上存储；
+        // console.log(this.msg)
+        // this.test()
+      },
+      beforeMount() {
+        // 此时，页面还没有被渲染好
+        // console.log(this.$el)
+      },
+      mounted() {
+        // console.log(this.$el)
+      },
+      beforeUpdate() {
+        // console.log('页面上的数据为：' + document.getElementById('txtMsg').innerHTML)
+        // console.log('data中的数据为：' + this.msg)
+      },
+      updated() {
+        console.log('页面上的数据为：' + document.getElementById('txtMsg').innerHTML)
+        console.log('data中的数据为：' + this.msg)
+      }
+    });
+  </script>
+</body>
+
+</html>
